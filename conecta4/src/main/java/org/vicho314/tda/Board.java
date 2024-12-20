@@ -1,6 +1,8 @@
 package org.vicho314.tda;
 
 import org.vicho314.tda.Piece;
+
+import java.util.LinkedList;
 //import java.util.ArrayList;
 
 public class Board {
@@ -16,6 +18,42 @@ public class Board {
 
     public Piece[][] getPiezas() {
         return piezas;
+    }
+
+    public Piece[] getCol(int x){
+        return this.piezas[x];
+    }
+
+    public Piece[] getFila(int y){
+        Piece[] piezas = new Piece[7];
+        for(int i = 0; i < 7;++i){
+            piezas[i] = this.piezas[i][y];
+        }
+        return piezas;
+    }
+
+    public Piece[] getDiagAscen(int x,int y){
+        LinkedList<Piece> piezas = new LinkedList<Piece>;
+        for(int i = 0; i < 7;++i){
+            if(this.inBounds(x+i,y+i))
+                piezas.add(this.piezas[x+i][y+i]);
+            else{
+                break;
+            }
+        }
+        return (Piece[]) piezas.toArray();
+    }
+
+    public Piece[] getDiagDescen(int x,int y){
+        LinkedList<Piece> piezas = new LinkedList<Piece>;
+        for(int i = 0; i < 7;++i){
+            if(this.inBounds(x+i,y+i))
+                piezas.add(this.piezas[x-i][y-i]);
+            else{
+                break;
+            }
+        }
+        return (Piece[]) piezas.toArray();
     }
 
     public void setPiezas(Piece[][] piezas) {
@@ -34,5 +72,76 @@ public class Board {
         if(this.inBounds(x, y)) {
             this.piezas[x][y] = pieza;
         }
+    }
+
+    public boolean canPlay(){
+        for(int i = 0; i < 7; ++i){
+            for(int j = 0; j < 6; ++j){
+                if(this.piezas[i][j] == null){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public boolean canPlay(int x){
+        int i = x;
+        for(int j = 0; j < 6; ++j){
+            if(this.piezas[i][j] == null){
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    //asume que la columna tiene pos. vacías
+    public boolean jugarFicha(Piece pieza, int x){
+        for(int i = 0; i < 6; ++i){
+            if(this.piezas == null){
+                this.piezas[x][i] = pieza;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Piece checkWin(Piece[] piezas){
+        int counter = 0;
+        Piece currentPiece = piezas[0];
+        for(int i = 0; i < piezas.length(); ++i){
+            if(currentPiece == piezas[i]){
+                counter+=1;
+            }
+            else{
+                counter=0;
+                currentPiece = piezas[i];
+            }
+            if(counter == 4){
+                return currentPiece;
+            }
+        }
+        return null;
+    }
+
+    public Piece verticalWin(){
+        Piece resultado = null;
+        for(int i = 0; i < 7;++i){
+            resultado = checkWin(this.getCol(i));
+            if(resultado != null){
+                return resultado;
+            }
+        }
+        return null;
+    }
+
+    public Piece horizontalWin(){
+        Piece resultado = null;
+        for(int i = 0; i < 6;++i){
+            resultado = checkWin(this.getFila(i));
+            if(resultado != null){
+                return resultado;
+            }
+        }
+        return null;
     }
 }
