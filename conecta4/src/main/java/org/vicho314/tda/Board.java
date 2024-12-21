@@ -11,7 +11,7 @@ public class Board {
     public Board(Piece[][] piezas) {
         this.piezas = piezas;
     }
-    
+
     public Board() {
         this.piezas = new Piece[7][6];
     }
@@ -143,5 +143,51 @@ public class Board {
             }
         }
         return null;
+    }
+
+    public Piece diagAscenWin(){
+    	int[6][2] puntos = {{0,0},{1,0},{2,0},{3,0},{0,1},{0,2}};
+        Piece resultado = null;
+        for(int i = 0; i < 6;++i){
+            resultado = checkWin(this.getDiagAscen(puntos[i][0],puntos[i][1]));
+            if(resultado != null){
+                return resultado;
+            }
+        }
+        return null;
+    }
+
+    public Piece diagDescenWin(){
+    	int[6][2] puntos = {{0,5},{1,5},{2,5},{3,5},{0,4},{0,3}};
+        Piece resultado = null;
+        for(int i = 0; i < 6;++i){
+            resultado = checkWin(this.getDiagDescen(puntos[i][0],puntos[i][1]));
+            if(resultado != null){
+                return resultado;
+            }
+        }
+        return null;
+    }
+
+    public Piece diagonalWin(){
+    	Piece resultado = null;
+    	resultado = this.diagDescenWin();
+    	if(resultado != null){
+    		return resultado;
+    	}
+    	else{
+    		return this.diagAscenWin();
+    	}
+    }
+
+    public Piece entregarGanador(){
+    	Piece resultado = null;
+    	resultado = this.verticalWin();
+    	if(resultado != null) return resultado;
+    	resultado = this.horizontalWin();
+    	if(resultado != null) return resultado;
+    	resultado = this.diagonalWin();
+    	if(resultado != null) return resultado;
+    	return resultado;
     }
 }
