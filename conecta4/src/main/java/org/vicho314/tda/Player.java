@@ -90,6 +90,10 @@ public class Player{
 				break;
 			default:
 				break;
-        }
+        	}
+	}
+
+	public boolean noFichas(){
+		return (this.rem_pieces <= 0);
 	}
 }

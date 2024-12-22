@@ -36,6 +36,10 @@ public class Game {
 		this.p2 = p2;
 	}
 
+	public boolean playersNoFichas(){
+		return this.p1.noFichas() && this.p2.noFichas();
+	}
+
 	public Board getBrd() {
 		return brd;
 	}
@@ -58,5 +62,13 @@ public class Game {
 
 	public void setHistory(Stack<History> history) {
 		this.history = history;
+	}
+
+	public void history(){
+		this.history.print();
+	}
+
+	public boolean esEmpate(){
+		return (this.brd.isFull() || this.playersNoFichas());
 	}
 }

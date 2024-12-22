@@ -94,6 +94,10 @@ public class Board {
         return false;
     }
 
+    public boolean isFull(){
+    	return !this.canPlay();
+    }
+
     //asume que la columna tiene pos. vacías
     public boolean jugarFicha(Piece pieza, int x){
         for(int i = 0; i < 6; ++i){
@@ -190,4 +194,5 @@ public class Board {
     	if(resultado != null) return resultado;
     	return resultado;
     }
+    
 }
