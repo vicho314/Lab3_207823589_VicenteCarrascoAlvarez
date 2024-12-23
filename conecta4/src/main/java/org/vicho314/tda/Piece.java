@@ -14,4 +14,8 @@ public class Piece {
     public void setColor(String color) {
         this.color = color;
     }
+
+    public String toString(){
+    	return this.color;
+    }
 }

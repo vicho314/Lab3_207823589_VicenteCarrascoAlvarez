@@ -194,5 +194,16 @@ public class Board {
     	if(resultado != null) return resultado;
     	return resultado;
     }
-    
+
+    public String toString(){
+    	Piece[] piezas;
+    	String res="[";
+    	for(int i = 0; i < 6; ++i){
+    	    for(Piece pz : this.getFila(i)){
+    	    	res+=System.out.printf("%$2s,",pz);
+    	    }
+    	    res+="\b]\n"
+    	}
+    	return res;
+    }    
 }

@@ -71,4 +71,25 @@ public class Game {
 	public boolean esEmpate(){
 		return (this.brd.isFull() || this.playersNoFichas());
 	}
+
+	public Player getCurrentPlayer(){
+		int cturn = this.getCturn;
+		switch(cturn){
+			case 0:
+				return this.getP1();
+				break;
+			case 1:
+				return this.getP2();
+				break;
+			default:
+				return null;
+				break;
+		}
+	}
+
+	public Board boardGetState(){
+		Board brd = this.getBrd();
+		System.out.println(brd);
+		return brd;
+	}
 }
