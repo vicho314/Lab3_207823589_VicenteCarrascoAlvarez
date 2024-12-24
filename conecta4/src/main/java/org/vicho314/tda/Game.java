@@ -92,4 +92,13 @@ public class Game {
 		System.out.println(brd);
 		return brd;
 	}
+
+	public void endGame(){
+		this.setCturn(-1);
+		Piece ganador = this.brd.entregarGanador();
+		//Fixme: USAR esEmpate!!
+		this.p1.updateStats(ganador);
+		this.p2.updateStats(ganador);
+		//Fixme: print ganador!
+	}
 }

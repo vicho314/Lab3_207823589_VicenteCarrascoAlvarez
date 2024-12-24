@@ -93,6 +93,22 @@ public class Player{
         	}
 	}
 
+	public void updateStats(Piece pz){
+		if(pz.color == this.pz.color ) {
+			this.updateStats(1);
+			return;
+		}
+		else if(pz.color != this.pz.color ) {
+			this.updateStats(-1);
+			return;
+        	}
+        	else if(pz.color == null) {
+			this.updateStats(0);
+			return;
+		}
+	}
+	
+
 	public boolean noFichas(){
 		return (this.rem_pieces <= 0);
 	}
