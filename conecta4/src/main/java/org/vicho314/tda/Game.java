@@ -101,4 +101,21 @@ public class Game {
 		this.p2.updateStats(ganador);
 		//Fixme: print ganador!
 	}
+
+	public void realizarMovimiento(Player pl, int x){
+		Player currentPlayer = this.getCurrentPlayer();
+		boolean jugada;
+		if(CurrentPlayer != null){
+			if(CurrentPlayer.name == pl.name){
+				jugada = this.brd.jugarFicha(new Piece(CurrentPlayer.color),x);
+				if(jugada){
+					CurrentPlayer.updateFichas(-1);
+					this.flipTurn();
+					this.history.push(new History(x,CurrentPlayer.color));
+					this.verificarGanador();
+					//fixme: añadir update stats if true
+				}
+			}
+		}
+	}
 }

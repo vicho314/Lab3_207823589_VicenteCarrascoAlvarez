@@ -108,8 +108,11 @@ public class Player{
 		}
 	}
 	
-
 	public boolean noFichas(){
 		return (this.rem_pieces <= 0);
+	}
+
+	public void updateFichas(int x){
+		this.rem_pieces+=x;
 	}
 }
