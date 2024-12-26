@@ -2,6 +2,11 @@ plugins {
     id 'application'
 }
 
+tasks.withType(JavaCompile){
+	options.release = 11
+}
+
+
 group = 'org.vicho314'
 version = '1.0-SNAPSHOT'
 
