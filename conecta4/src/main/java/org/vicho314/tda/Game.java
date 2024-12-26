@@ -87,6 +87,21 @@ public class Game {
 		}
 	}
 
+	public void updateCurrentPlayerFichas(int fichas){
+		int cturn = this.getCturn();
+		switch(cturn){
+			case 0:
+				this.p1.updateFichas(fichas);
+				break;
+			case 1:
+				this.p2.updateFichas(fichas);
+				break;
+			default:
+				System.out.println("Error: updateFichas: cturn no asociado a nadie.");
+				break;
+		}
+	}
+
 	public Board boardGetState(){
 		Board brd = this.getBrd();
 		System.out.println(brd);
@@ -99,6 +114,7 @@ public class Game {
 		//Fixme: USAR esEmpate!!
 		this.p1.updateStats(ganador);
 		this.p2.updateStats(ganador);
+		System.out.println("Juego terminado con ganador: %s\n");
 		//Fixme: print ganador!
 	}
 
@@ -109,10 +125,13 @@ public class Game {
 			if(CurrentPlayer.name == pl.name){
 				jugada = this.brd.jugarFicha(new Piece(CurrentPlayer.color),x);
 				if(jugada){
-					CurrentPlayer.updateFichas(-1);
+					this.updateCurrentPlayerFichas(-1);
 					this.flipTurn();
 					this.history.push(new History(x,CurrentPlayer.color));
-					this.verificarGanador();
+					Piece winner = this.brd.entregarGanador();
+					if(winner != null || this.esEmpate()){
+						this.endGame();
+					}
 					//fixme: añadir update stats if true
 				}
 			}
