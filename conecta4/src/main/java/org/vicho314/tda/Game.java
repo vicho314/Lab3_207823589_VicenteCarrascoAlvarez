@@ -1,8 +1,5 @@
 package org.vicho314.tda;
 
-import org.vicho314.tda.Board;
-import org.vicho314.tda.Player;
-import org.vicho314.tda.History;
 import java.util.Stack;
 
 public class Game {
@@ -10,14 +7,14 @@ public class Game {
 	private Player p2;
 	private Board brd;
 	private int cturn;
-	private Stack history = new Stack<History>;
+	private Stack<History> history = new Stack<History>();
 
 	public Game(Player p1, Player p2, Board brd, int cturn){
 		this.p1 = p1;
 		this.p2 = p2;
 		this.brd = brd;
 		this.cturn = cturn;
-		this.history = new Stack<History>;
+		this.history = new Stack<History>();
 	}
 
 	public Player getP1() {
@@ -65,7 +62,10 @@ public class Game {
 	}
 
 	public void history(){
-		this.history.print();
+		System.out.println("\nHistorial de movimientos:");
+		for(History reg: this.history) {
+			System.out.printf("(%d, %s)\n",reg.getCol(),reg.getColor());
+		}
 	}
 
 	public boolean esEmpate(){
@@ -73,17 +73,14 @@ public class Game {
 	}
 
 	public Player getCurrentPlayer(){
-		int cturn = this.getCturn;
+		int cturn = this.getCturn();
 		switch(cturn){
 			case 0:
 				return this.getP1();
-				break;
 			case 1:
 				return this.getP2();
-				break;
 			default:
 				return null;
-				break;
 		}
 	}
 
@@ -97,7 +94,7 @@ public class Game {
 				this.p2.updateFichas(fichas);
 				break;
 			default:
-				System.out.println("Error: updateFichas: cturn no asociado a nadie.");
+				System.out.println("Error: updateFichas: cturn no asociado a nadie.\n");
 				break;
 		}
 	}
@@ -114,26 +111,52 @@ public class Game {
 		//Fixme: USAR esEmpate!!
 		this.p1.updateStats(ganador);
 		this.p2.updateStats(ganador);
-		System.out.println("Juego terminado con ganador: %s\n");
+		if(ganador != null){
+			System.out.printf("Juego terminado con ganador: %s\n",ganador.getColor());
+		}
+		else{
+			System.out.println("Juego terminado con ganador: Empate!\n");
+		}
 		//Fixme: print ganador!
 	}
 
+	public void flipTurn(){
+		int cturn = this.getCturn();
+		if(cturn == -1) {
+			return;
+		}
+		this.setCturn((this.getCturn() + 1 ) % 2);
+	}
+
+	public void printJugadaHecha(Player pl,int x){
+		if(pl != null){
+			System.out.format("Jugada: %s, en columna %d",pl.getName(),x);
+		}
+		else{
+			System.out.println("Error: Jugada de jugador nulo!\n");
+		}
+	}
+	
 	public void realizarMovimiento(Player pl, int x){
-		Player currentPlayer = this.getCurrentPlayer();
+		Player CurrentPlayer = this.getCurrentPlayer();
 		boolean jugada;
 		if(CurrentPlayer != null){
-			if(CurrentPlayer.name == pl.name){
-				jugada = this.brd.jugarFicha(new Piece(CurrentPlayer.color),x);
+			if(CurrentPlayer.getName() == pl.getName()){
+				jugada = this.brd.jugarFicha(new Piece(CurrentPlayer.getColor()),x);
 				if(jugada){
+					this.printJugadaHecha(pl,x);
 					this.updateCurrentPlayerFichas(-1);
 					this.flipTurn();
-					this.history.push(new History(x,CurrentPlayer.color));
+					this.history.push(new History(x,CurrentPlayer.getColor()));
 					Piece winner = this.brd.entregarGanador();
 					if(winner != null || this.esEmpate()){
 						this.endGame();
 					}
 					//fixme: añadir update stats if true
 				}
+			}
+			else{
+				System.out.printf("\nError: No es el turno de %s!\n",pl.getName());
 			}
 		}
 	}

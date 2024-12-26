@@ -94,15 +94,15 @@ public class Player{
 	}
 
 	public void updateStats(Piece pz){
-		if(pz.color == this.pz.color ) {
+		if(pz.getColor() == this.getColor() ) {
 			this.updateStats(1);
 			return;
 		}
-		else if(pz.color != this.pz.color ) {
+		else if(pz.getColor() != this.getColor() ) {
 			this.updateStats(-1);
 			return;
         	}
-        	else if(pz.color == null) {
+        	else if(pz.getColor() == null) {
 			this.updateStats(0);
 			return;
 		}

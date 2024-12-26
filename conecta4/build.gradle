@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+    id 'application'
 }
 
 group = 'org.vicho314'
@@ -16,4 +16,12 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+run {
+    standardInput = System.in
+}
+
+application {
+    mainClass = 'org.vicho314.Main'
 }
