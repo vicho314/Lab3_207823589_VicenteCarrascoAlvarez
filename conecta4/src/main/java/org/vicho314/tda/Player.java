@@ -38,9 +38,9 @@ public class Player{
 	 * @param id Turno
 	 * @param name String
 	 * @param color String
-	 * @param wins int>0
-	 * @param losses int>0
-	 * @param draws int>0
+	 * @param wins int
+	 * @param losses int
+	 * @param draws int
 	 * @param rem_pieces Fichas
 	 */
 	public Player(int id, String name, String color, int wins, int losses, int draws, int rem_pieces) {

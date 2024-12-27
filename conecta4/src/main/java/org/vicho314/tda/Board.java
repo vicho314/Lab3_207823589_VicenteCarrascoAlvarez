@@ -1,6 +1,7 @@
 package org.vicho314.tda;
 
 import java.util.LinkedList;
+import org.vicho314.tda.*;
 //import java.util.ArrayList;
 
 /**
@@ -179,7 +180,7 @@ public class Board {
 
     /**
      * Wrapper, verifica si hay 4 fichas consecutivas iguales en una lista de piezas.
-     * @param piezas
+     * @param piezas Piece[]
      * @return Piece ganadora, vacía != null
      */
     public Piece checkWin(Piece[] piezas){

@@ -2,7 +2,7 @@ package org.vicho314.tda;
 
 import java.util.Scanner;
 import java.util.Stack;
-//import org.vicho314.tda.*;
+import org.vicho314.tda.*;
 
 /**
  * Representa una sesión de juego de Conecta4, haciendo uso de los otros TDAs.
