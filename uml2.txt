@@ -1,0 +1,87 @@
+@startuml
+
+
+class String{
+	+ {method} Definido por java
+}
+
+class Stack{
+	+ {method} Definido por java
+}
+
+class History{
+	- int col
+	- String color
+	+ History()
+}
+
+class Piece{
+	- String color
+	+ {method} Getters y Setters
+}
+
+class Player{
+	- int id
+	- String name
+	- String color
+	- int wins
+	- int losses
+	- int draws
+	- int rem_pieces
+	+ Player()
+	+ {method} Getters y Setters
+	+ updateStats()
+	+ noFichas()
+	+ updateFichas()
+	+ printStats()
+}
+Player "1" *- "2" String
+
+
+class Board{
+	- Piece[7][6] piezas
+	+ Board()
+	+ getCol()
+	+ getFila()
+	+ getDiagAscen()
+	+ getDiagDescen()
+	+ inBounds()
+	+ canPlay()
+	+ isFull()
+	+ jugarFicha()
+	+ checkWin()
+	+ verticalWin()
+	+ {method} HorizWin, etc
+	+ entregarGanador()
+	+ toString()
+}
+
+Board "1" *-- "*" Piece
+
+class Game{
+	- Player p1
+	- Player p2
+	- Board brd
+	- int cturn
+	- Stack<History> history
+	+ Game()
+	+ {method} Getters y Setters
+	+ history()
+	+ esEmpate()
+	+ getCurrentPlayer()
+	+ boardGetState()
+	+ endGame()
+	+ realizarMovimiento()
+}
+Game "1" *-- "2" Player
+Game "1" *-- "1" Board
+Game "1" *-- "1" Stack
+Stack "1" *-- "1,*" History
+
+class Main{
+	+ Game game
+	+ {method} Código del menú y manejo del juego
+}
+Main "1" *-- "1" Game
+
+@enduml

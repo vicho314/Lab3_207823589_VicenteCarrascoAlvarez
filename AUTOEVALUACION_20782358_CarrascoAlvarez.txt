@@ -1,0 +1,36 @@
+#RF:
+
+1.  RF1 - TDAs:			1
+2.  RF2 - Menú interactivo:	1
+3.  RF3 - Player constructor:	1
+4.  RF4 - Piece constructor:	1
+5.  RF5 - Board constructor:	1
+6.  RF6 - Board - sePuedeJugar (canPlay):	1
+7.  RF7 - Board - jugarFicha:	1
+8.  RF8 - Board - checkVertical :	1
+9.  RF9 - check_horizontal_win:	1
+10. RF10- check_diagonal_win:		0,75
+11. RF11- entregarGanador:	1
+12. RF12- Game constructor:		1
+13. RF13- history:		1
+14. RF14- esEmpate:		0,75
+15. RF15- actualizarEstadisticas:	1
+16. RF16- getCurrentPlayer:	1
+17. RF17- boardGetState:		1
+18. RF18- endGame:		1
+19. RF19- realizarMovimiento:   1
+
+# RNF:
+1. RNF1 - Autoevaluación: 1
+2. RNF2 - Lenguaje: 1
+3. RNF3 - SDK: 1
+4. RNF4 - IntelliJ: 1
+5. RNF5 - Gradle: 0,75
+6. RNF6 - Interacciones: 1
+7. RNF7 - Paradigma: 0,5
+8. RNF8 - Prerrequsitos: 0,75
+9. RNF9 - JavaDoc: 1
+10. RNF10 - Organización: 0,75
+11. RNF11 - UML análisis: 0,5
+12. RNF12 - UML diseño: 0,5
+13. RNF13 - Git: 0,5

@@ -1,0 +1,49 @@
+@startuml
+
+/'
+class String{
+	+ {method} Definido por java
+}
+
+class LinkedList{
+	+ {method} Definido por java
+}
+'/
+
+class Player{
+	- int id
+	- String name
+	- String color
+	- int wins
+	- int losses
+	- int draws
+	- int rem_pieces
+	+ {method} Getters y Setters
+}
+/' Player "1" *- "2" String
+'/
+
+class Board{
+	- String[7][6] piezas
+	+ {method} Getters y Setters
+}
+
+class Game{
+	- Player p1
+	- Player p2
+	- Board brd
+	- int cturn
+	- LinkedList History
+	+ {method} Getters y Setters
+}
+Game "1" *-- "2" Player
+Game "1" *-- "1" Board
+Game "1" *-- "1" History
+
+class Main{
+	+ Game game
+	+ {method} Código del menú y manejo del juego
+}
+Main "1" *-- "1" Game
+
+@enduml
